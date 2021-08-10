@@ -1,16 +1,38 @@
 <template>
   <div class="bg-white py-8 lg:py-0 flex items-center">
     <div class="container flex flex-wrap lg:flex-no-wrap items-center">
-      <nuxt-link :to="{ name: 'home' }" class="mr-10 flex-shrink-0">
+      <nuxt-link
+        :to="{ name: 'index' }" 
+        class="mr-10 flex-shrink-0"
+      >
         <img src="~/assets/logo.svg" alt="Logo" class="h-8" />
       </nuxt-link>
 
       <a
         href="#"
-        class="lg:hidden ml-auto"
+        class="lg:hidden ml-auto flex flex-col relative justify-center w-8 h-8"
         @click.prevent="mobileNavOpen = !mobileNavOpen"
       >
-        Open
+        <span
+          class="bg-blue-500 h-1 w-8 rounded mb-1"
+          :class="{
+            'rotate-45 absolute right-0': mobileNavOpen
+          }"
+        ></span>
+
+        <span
+          class="bg-blue-500 h-1 w-8 rounded mb-1"
+          :class="{
+            '-rotate-45 absolute right-0': mobileNavOpen
+          }"
+        ></span>
+
+        <span
+          class="bg-blue-500 h-1 w-8 rounded mb-1"
+          :class="{
+            'hidden': mobileNavOpen
+          }"
+        ></span>
       </a>
 
       <div
@@ -20,7 +42,7 @@
         <ul class="lg:h-24 lg:flex items-center w-full lg:w-auto">
           <li>
             <nuxt-link
-              :to="{ name: 'home' }"
+              :to="{ name: 'index' }"
               class="text-lg text-gray-700 lg:py-8 lg:px-4"
             >
               Browse
@@ -28,7 +50,7 @@
           </li>
           <li>
             <nuxt-link
-              :to="{ name: 'home' }"
+              :to="{ name: 'index' }"
               class="text-lg text-gray-700 lg:py-8 lg:px-4"
             >
               Search
@@ -41,7 +63,7 @@
         >
           <li>
             <nuxt-link
-              :to="{ name: 'home' }"
+              :to="{ name: 'index' }"
               class="text-lg text-gray-700 lg:py-8 lg:px-4"
             >
               Dashboard
@@ -49,7 +71,7 @@
           </li>
           <li>
             <nuxt-link
-              :to="{ name: 'home' }"
+              :to="{ name: 'index' }"
               class="text-lg text-gray-700 lg:py-8 lg:px-4"
             >
               Kenneth Fernandez
@@ -57,7 +79,7 @@
           </li>
           <li>
             <nuxt-link
-              :to="{ name: 'home' }"
+              :to="{ name: 'index' }"
               class="text-lg text-gray-700 lg:py-8 lg:px-4"
             >
               Sign in
@@ -65,7 +87,7 @@
           </li>
           <li>
             <nuxt-link
-              :to="{ name: 'home' }"
+              :to="{ name: 'index' }"
               class="text-lg text-gray-700 lg:py-8 lg:px-4"
             >
               Create an account
@@ -73,7 +95,7 @@
           </li>
           <li>
             <nuxt-link
-              :to="{ name: 'home' }"
+              :to="{ name: 'index' }"
               class="text-lg text-gray-700 lg:py-8 lg:px-4"
             >
               Sign out
