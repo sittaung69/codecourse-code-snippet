@@ -38,11 +38,33 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
+    "@nuxtjs/auth"
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: env.parsed.API_URL
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: "auth/signin",
+            method: "post",
+            propertyName: "data.token"
+          },
+          user: {
+            url: "auth/me",
+            method: "get",
+            propertyName: "data"
+          }
+        }
+      }
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

@@ -61,46 +61,50 @@
         <ul
           class="lg:h-24 lg:flex items-center w-full lg:w-auto text-right ml-auto"
         >
-          <li>
-            <nuxt-link
-              :to="{ name: 'index' }"
-              class="text-lg text-gray-700 lg:py-8 lg:px-4"
-            >
-              Dashboard
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              :to="{ name: 'index' }"
-              class="text-lg text-gray-700 lg:py-8 lg:px-4"
-            >
-              Kenneth Fernandez
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              :to="{ name: 'index' }"
-              class="text-lg text-gray-700 lg:py-8 lg:px-4"
-            >
-              Sign in
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              :to="{ name: 'index' }"
-              class="text-lg text-gray-700 lg:py-8 lg:px-4"
-            >
-              Create an account
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              :to="{ name: 'index' }"
-              class="text-lg text-gray-700 lg:py-8 lg:px-4"
-            >
-              Sign out
-            </nuxt-link>
-          </li>
+          <template v-if="$auth.loggedIn">
+            <li>
+              <nuxt-link
+                :to="{ name: 'index' }"
+                class="text-lg text-gray-700 lg:py-8 lg:px-4"
+              >
+                Dashboard
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                :to="{ name: 'index' }"
+                class="text-lg text-gray-700 lg:py-8 lg:px-4"
+              >
+                {{ $auth.user.name }}
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                :to="{ name: 'index' }"
+                class="text-lg text-gray-700 lg:py-8 lg:px-4"
+              >
+                Sign out
+              </nuxt-link>
+            </li>
+          </template>
+          <template v-else>
+            <li>
+              <nuxt-link
+                :to="{ name: 'auth-signin' }"
+                class="text-lg text-gray-700 lg:py-8 lg:px-4"
+              >
+                Sign in
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                :to="{ name: 'index' }"
+                class="text-lg text-gray-700 lg:py-8 lg:px-4"
+              >
+                Create an account
+              </nuxt-link>
+            </li>
+          </template> 
         </ul>
       </div>
     </div>
