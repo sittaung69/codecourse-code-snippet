@@ -79,12 +79,13 @@
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link
-                :to="{ name: 'index' }"
+              <a 
+                href="#"
+                @click.prevent="signOut"
                 class="text-lg text-gray-700 lg:py-8 lg:px-4"
               >
                 Sign out
-              </nuxt-link>
+              </a>
             </li>
           </template>
           <template v-else>
@@ -116,6 +117,12 @@ export default {
   data () {
     return {
       mobileNavOpen: false
+    }
+  },
+
+  methods: {
+    async signOut() {
+      await this.$auth.logout()
     }
   }
 }
