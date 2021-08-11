@@ -6,6 +6,11 @@
 
 <script>
 export default {
-  //
+  head() {
+    return {
+      title: 'Snippets by Codecourse',
+      titleTemplate: null
+    }
+  }
 }
 </script>
