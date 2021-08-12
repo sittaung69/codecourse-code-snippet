@@ -34,6 +34,9 @@ class SnippetController extends Controller
     {
         $snippet = $request->user()->snippets()->create();
 
-        dd($snippet);
+        return fractal()
+            ->item($snippet)
+            ->transformWith(new SnippetTransformer())
+            ->toArray();
     }
 }
