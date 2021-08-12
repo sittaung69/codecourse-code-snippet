@@ -7,3 +7,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'App\Http\Controllers\Auth'], f
     Route::get('me', 'MeController');
     Route::post('signout', 'SignOutController');
 });
+
+Route::group(['prefix' => 'snippets', 'namespace' => 'App\Http\Controllers\Snippets'], function () {
+    Route::post('', 'SnippetController@store');
+});
