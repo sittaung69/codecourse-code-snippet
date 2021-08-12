@@ -38,6 +38,7 @@
           class="text-xl text-gray-600 font-medium p-2 py-1 bg-transparent border-2 rounded border-dashed border-gray-400 w-full"
           value=""
           placeholder="Untitled step"
+          v-model="currentStep.title"
         >
       </div>
 
@@ -77,7 +78,11 @@
           </div>
 
           <div class="w-full lg:mr-2">
-            <textarea class="w-full mb-6 border-dashed border-2 border-gray-400 rounded-lg"></textarea>
+            <textarea
+              class="w-full mb-6 border-dashed border-2 border-gray-400 rounded-lg"
+              v-model="currentStep.body"
+            >
+            </textarea>
             <div class="bg-white p-8 rounded-lg text-gray-600">
               Markdown content
             </div>
@@ -141,16 +146,16 @@
             <ul>
               <li
                 class="mb-1"
-                v-for="(step, index) in 5"
+                v-for="(step, index) in orderedStepsAsc"
                 :key="index"
               >
                 <nuxt-link
                   :to="{}"
                   :class="{
-                    'font-bold': index === 0
+                    'font-bold': currentStep.uuid === step.uuid
                   }"
                 >
-                  {{ index + 1 }}. Step title
+                  {{ index + 1 }}. {{ step.title }}
                 </nuxt-link>
               </li>
             </ul>
@@ -168,11 +173,31 @@
 </template>
 
 <script>
+import { orderBy as _orderBy } from 'lodash'
+
 export default {
   data() {
     return {
       snippet: null,
       steps: [],
+    }
+  },
+
+  computed: {
+    orderedStepsAsc() {
+      return _orderBy(
+        this.steps, 'order', 'asc'
+      )
+    },
+
+    firstStep() {
+      return this.orderedStepsAsc[0]
+    },
+
+    currentStep() {
+      return this.orderedStepsAsc.find(
+        (s) => s.uuid === this.$route.query.step
+      ) || this.firstStep
     }
   },
 
