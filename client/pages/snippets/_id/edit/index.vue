@@ -8,6 +8,7 @@
             class="text-4xl text-gray-700 font-medium font-header leading-tight mb-4 w-full block p-2 border-2 rounded border-dashed border-gray-400"
             value=""
             placeholder="Untitled snippet"
+            v-model="snippet.title"
           />
 
           <h1 class="text-4xl text-gray-700 font-medium leading-tight mb-4">
@@ -168,6 +169,20 @@
 
 <script>
 export default {
-  //
+  data() {
+    return {
+      snippet: null,
+      steps: [],
+    }
+  },
+
+  async asyncData({ app, params }) {
+    let snippet = await app.$axios.$get(`snippets/${params.id}`)
+
+    return {
+      snippet: snippet.data,
+      steps: snippet.data.steps.data
+    }
+  }
 }
 </script>
